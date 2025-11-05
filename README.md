@@ -84,7 +84,6 @@ It contains grayscale images of clothing items and is widely used for benchmarki
 9. Bag  
 10. Ankle boot
 
----
 ## 📦 Dataset Source
 
 Due to GitHub's 25MB file size limit, the dataset files (`fashion-mnist_train.csv` and `fashion-mnist_test.csv`) are **not included** in this repository.
