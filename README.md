@@ -168,6 +168,13 @@ After training, the model was tested on unseen images.
 - Dropout helped generalization by preventing overfitting.
 
 ---
+
+## 📊 Results & Visualizations
+
+Below are key visualizations that represent how our CNN model learned and performed.
+
+---
+
 ### 🖼️ Sample Fashion Images
 The dataset contains grayscale images representing 10 fashion categories.  
 This grid shows random samples from the dataset.
