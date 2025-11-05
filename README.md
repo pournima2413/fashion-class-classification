@@ -168,6 +168,58 @@ After training, the model was tested on unseen images.
 - Dropout helped generalization by preventing overfitting.
 
 ---
+### 🖼️ Sample Fashion Images
+The dataset contains grayscale images representing 10 fashion categories.  
+This grid shows random samples from the dataset.
+
+![Sample Fashion Images](images/sample_grid.png)
+
+---
+
+### 📦 Class Distribution
+Each bar shows how many samples exist for each fashion class.  
+All bars are equal — meaning our data is perfectly balanced, giving the model fair training.
+
+![Class Distribution](images/class_distribution.png)
+
+---
+
+### 📈 Training vs Validation Accuracy
+As training goes on, the blue line (training accuracy) rises steadily.  
+The orange line (validation accuracy) follows — showing that the model isn’t just memorizing, but truly learning.
+
+![Training vs Validation Accuracy](images/accuracy_curve.png)
+
+---
+
+### 📉 Training vs Validation Loss
+Here we track how much the model’s “mistake level” decreases.  
+Both curves drop, meaning it’s learning efficiently, though validation loss stays slightly higher (normal for unseen data).
+
+![Training vs Validation Loss](images/loss_curve.png)
+
+---
+
+### 🔍 Confusion Matrix
+This heatmap shows how well each class was predicted.  
+Bright diagonal boxes = correct predictions!  
+The lighter the box, the more confident our model was.
+
+![Confusion Matrix](images/confusion_matrix.png)
+
+---
+
+Think of the computer as a little kid learning fashion 👧:
+
+- First, it looks at thousands of pictures of clothes 👗👟🧥  
+- It slowly starts recognizing patterns — “Oh! Shoes have soles, shirts have sleeves!”  
+- The accuracy chart shows the kid getting better after each practice.  
+- The loss chart shows fewer mistakes over time (fewer “oops” moments 😅).  
+- Finally, the confusion matrix is like a report card showing what the kid got right and what still confuses them (like mixing up shirts and pullovers).
+
+At the end, the kid becomes a mini **fashion expert**, correctly naming 9 out of 10 items! 🎓
+
+---
 
 ## 🧰 Dropout: Why and How It Helps
 
