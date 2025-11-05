@@ -64,6 +64,7 @@ A **Convolutional Neural Network (CNN)** solves this by **preserving spatial str
 The **Fashion-MNIST dataset**, developed by Zalando Research, is a more challenging version of the classic MNIST dataset.  
 It contains grayscale images of clothing items and is widely used for benchmarking image classification algorithms.
 
+
 | Property | Details |
 |-----------|----------|
 | **Images** | 70,000 total (60,000 train + 10,000 test) |
@@ -84,8 +85,14 @@ It contains grayscale images of clothing items and is widely used for benchmarki
 10. Ankle boot
 
 ---
+## 📦 Dataset Source
 
-## ⚙️ Data Preparation & Preprocessing
+Due to GitHub's 25MB file size limit, the dataset files (`fashion-mnist_train.csv` and `fashion-mnist_test.csv`) are **not included** in this repository.
+
+You can download them directly from Kaggle:
+🔗 [Fashion MNIST Dataset on Kaggle](https://www.kaggle.com/datasets/zalando-research/fashionmnist)
+
+---
 
 1. **Data Import:**  
    Loaded the training and testing datasets from CSV format using `pandas`.  
