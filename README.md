@@ -1,307 +1,328 @@
-# 👗 Fashion Class Classification using Deep Learning (CNN-based Project)
+<div align="center">
 
-## 🧾 Overview
+```
+╔═══════════════════════════════════════════════════════════════╗
+║                                                               ║
+║        👗  FASHION CLASS CLASSIFICATION                       ║
+║            using Deep Learning & CNN                          ║
+║                                                               ║
+║        Can a machine learn fashion? Yes — 91.9% of the time. ║
+║                                                               ║
+╚═══════════════════════════════════════════════════════════════╝
+```
 
-This project demonstrates how **Computer Vision** and **Deep Learning** can be applied to understand fashion — by automatically recognizing clothing items from grayscale images.  
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)](https://tensorflow.org)
+[![Keras](https://img.shields.io/badge/Keras-D00000?style=for-the-badge&logo=keras&logoColor=white)](https://keras.io)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![Scikit-learn](https://img.shields.io/badge/Scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)](https://scikit-learn.org)
+[![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)](https://jupyter.org)
 
-The goal is to simulate a **virtual stylist assistant** that can analyze user-uploaded photos (like from Instagram or e-commerce platforms) and identify what type of fashion item it is — such as a *T-shirt*, *Bag*, *Sneaker*, or *Dress*.  
+![Accuracy](https://img.shields.io/badge/Test%20Accuracy-91.9%25-brightgreen?style=flat-square)
+![Dataset](https://img.shields.io/badge/Dataset-Fashion--MNIST-blueviolet?style=flat-square)
+![Images](https://img.shields.io/badge/Images-70%2C000-blue?style=flat-square)
+![Classes](https://img.shields.io/badge/Classes-10-orange?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Complete-14B8A6?style=flat-square)
 
-By classifying these images into well-defined categories, retailers and fashion companies can:  
-- Detect and forecast **emerging fashion trends**  
-- Personalize **product recommendations**  
-- Design **targeted marketing campaigns**  
-- Automate **catalog management** for e-commerce  
-
-This project was implemented using the **Fashion-MNIST** dataset and a **Convolutional Neural Network (CNN)** built with **TensorFlow/Keras**.
-
----
-
-## 🎯 Objective
-
-The **objective** of this project is to build an end-to-end **image classification model** that can:
-1. Accurately recognize fashion products from grayscale images.  
-2. Learn complex patterns such as textures, edges, and shapes.  
-3. Generalize well on unseen images.  
-4. Achieve at least **90% accuracy** on the Fashion-MNIST test dataset.  
-
-Additionally, the model aims to:
-- Demonstrate the effectiveness of **CNNs** in vision-based tasks compared to traditional dense (fully connected) neural networks.  
-- Showcase how **deep learning architectures** mimic human visual perception.
+</div>
 
 ---
 
-## 💡 Why Use CNN (Convolutional Neural Network)?
+## ◈ The Idea
 
-Traditional machine learning models (like logistic regression, SVMs, or dense neural networks) treat images as **flat vectors** of numbers — ignoring how pixels relate to each other spatially.  
-This means they fail to capture **spatial dependencies** such as edges, corners, or shapes that define objects.
+> *Retailers receive millions of product images daily. Manually tagging each one is slow, expensive, and error-prone.*
+> *What if a machine could look at a clothing image and instantly know — T-shirt? Sneaker? Bag? Dress?*
 
-A **Convolutional Neural Network (CNN)** solves this by **preserving spatial structure** in the image.
+This project builds exactly that — a **Convolutional Neural Network** trained on **70,000 fashion images** that classifies clothing into 10 categories with **91.9% accuracy.**
 
-### 🧩 Why CNNs are Perfect for this Project
-
-1. **Local Feature Extraction**  
-   CNNs apply **convolutional filters (kernels)** that scan small areas of the image (like 3×3).  
-   Each filter detects simple patterns — edges, curves, or gradients — which later combine to form complex patterns such as “sleeves” or “laces”.
-
-2. **Hierarchical Learning**  
-   - First layers learn **low-level features** (edges, corners).  
-   - Deeper layers learn **high-level features** (shapes, textures).  
-   - Enables complex object recognition.
-
-3. **Parameter Efficiency**  
-   CNNs reuse weights through filters — fewer parameters, faster training, less overfitting.
-
-4. **Translation Invariance**  
-   Pooling layers help the model recognize objects even when slightly rotated, scaled, or shifted.
-
-5. **Industry Relevance**  
-   CNNs are the foundation of modern visual AI systems — used in **Amazon**, **Pinterest**, and **Google Lens** for image tagging and recommendation.
+The real-world applications:
+- 🛍️ E-commerce auto-cataloguing
+- 📸 Instagram outfit recognition
+- 🎯 Personalised product recommendations
+- 📦 Automated inventory tagging
 
 ---
 
-## 📘 Dataset: Fashion-MNIST
+## ◈ Dataset — Fashion-MNIST
 
-The **Fashion-MNIST dataset**, developed by Zalando Research, is a more challenging version of the classic MNIST dataset.  
-It contains grayscale images of clothing items and is widely used for benchmarking image classification algorithms.
+Developed by **Zalando Research** as a harder, more meaningful alternative to digit MNIST.
 
+<div align="center">
 
-| Property | Details |
-|-----------|----------|
-| **Images** | 70,000 total (60,000 train + 10,000 test) |
-| **Image Size** | 28 × 28 pixels (grayscale) |
-| **Classes** | 10 fashion categories |
-| **Format** | CSV (flattened pixel arrays) |
+| Property | Value |
+|:---:|:---:|
+| Total Images | 70,000 |
+| Training Set | 60,000 |
+| Test Set | 10,000 |
+| Image Size | 28 × 28 pixels |
+| Color | Grayscale |
+| Classes | 10 |
 
-**Class Labels:**
-1. T-shirt/top  
-2. Trouser  
-3. Pullover  
-4. Dress  
-5. Coat  
-6. Sandal  
-7. Shirt  
-8. Sneaker  
-9. Bag  
-10. Ankle boot
+</div>
 
-## 📦 Dataset Source
+**The 10 Classes:**
 
-Due to GitHub's 25MB file size limit, the dataset files (`fashion-mnist_train.csv` and `fashion-mnist_test.csv`) are **not included** in this repository.
+```
+  [0] 👕 T-shirt/Top       [1] 👖 Trouser
+  [2] 🧥 Pullover          [3] 👗 Dress
+  [4] 🧥 Coat              [5] 👡 Sandal
+  [6] 👔 Shirt             [7] 👟 Sneaker
+  [8] 👜 Bag               [9] 👢 Ankle Boot
+```
 
-You can download them directly from Kaggle:
-🔗 [Fashion MNIST Dataset on Kaggle](https://www.kaggle.com/datasets/zalando-research/fashionmnist)
+> ⚠️ Dataset not included due to GitHub's 25MB limit.
+> Download from 🔗 [Kaggle — Fashion MNIST](https://www.kaggle.com/datasets/zalando-research/fashionmnist)
 
 ---
 
-1. **Data Import:**  
-   Loaded the training and testing datasets from CSV format using `pandas`.  
+## ◈ Why CNN and Not a Simple Neural Network?
 
-2. **Normalization:**  
-   Scaled all pixel values (0–255) to the range (0–1).  
+Traditional neural networks flatten images into a 1D vector —
+losing all spatial information. A shirt's sleeve and collar
+mean nothing when pixels are treated as independent numbers.
 
-3. **Reshaping:**  
-   Reshaped images from (784,) to (28, 28, 1) to preserve 2D structure.  
+**CNNs preserve spatial structure:**
 
-4. **Train-Validation Split:**  
-   80% of training data used for model training and 20% used for validation to monitor overfitting.
-
----
-
-## 🧠 Model Architecture
-
-| Layer Type | Description |
-|-------------|--------------|
-| **Conv2D (32 filters, 3×3)** | Extracts local features from images |
-| **ReLU Activation** | Adds non-linearity |
-| **MaxPooling2D (2×2)** | Reduces dimensionality while keeping important features |
-| **Flatten** | Converts 2D feature maps into 1D vectors |
-| **Dense (32 neurons, ReLU)** | Fully connected layer for feature combination |
-| **Dense (10 neurons, Softmax)** | Output layer for multi-class classification |
-
-**Loss Function:** Categorical Crossentropy  
-**Optimizer:** Adam  
-**Metric:** Accuracy  
-
----
-
-## 🧩 Why ReLU, MaxPooling, and Softmax?
-
-| Component | Purpose |
-|------------|----------|
-| **ReLU (Rectified Linear Unit)** | Prevents vanishing gradients and accelerates training |
-| **MaxPooling** | Reduces overfitting and computational cost |
-| **Softmax** | Converts raw outputs to class probabilities |
+```
+Raw Image (28×28)
+      │
+      ▼
+┌─────────────────────────────────────────────┐
+│  Convolutional Layer — detects edges, curves │
+│  "Is there a collar here? A sole there?"     │
+└─────────────────────────────┬───────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────┐
+│  Pooling Layer — compresses, keeps key info  │
+│  "Keep what matters, discard the noise"      │
+└─────────────────────────────┬───────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────┐
+│  Deeper Conv Layers — learns complex shapes  │
+│  "That's a sneaker shape. That's a bag."     │
+└─────────────────────────────┬───────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────┐
+│  Dense + Softmax — final classification      │
+│  "91.9% sure this is a Sneaker."             │
+└─────────────────────────────────────────────┘
+```
 
 ---
 
-## 🧪 Model Training
+## ◈ Data Preprocessing
 
-- **Epochs:** 50  
-- **Batch size:** 512  
-- **Validation data:** 20% of training set  
-- **Framework:** TensorFlow/Keras  
-
-Training accuracy reached **~95%**, and test accuracy stabilized around **~91%** after applying Dropout regularization.
-
----
-
-## 📈 Model Evaluation
-
-After training, the model was tested on unseen images.  
-
-| Model Setup | Train Accuracy | Test Accuracy |
-|--------------|----------------|---------------|
-| 32 filters, no dropout | 95% | 91.1% |
-| 64 filters, no dropout | 96% | 91.6% |
-| 64 filters + dropout | 94% | **91.9%** ✅ |
+| Step | What Was Done | Why |
+|---|---|---|
+| **Load** | Read CSV files using Pandas | Fashion-MNIST provided as flattened pixel arrays |
+| **Normalize** | Scaled pixel values 0–255 → 0–1 | Faster convergence during training |
+| **Reshape** | (784,) → (28, 28, 1) | Restore 2D structure for CNN input |
+| **Split** | 80% train / 20% validation | Monitor overfitting during training |
 
 ---
 
-### 🔍 Evaluation Metrics
+## ◈ Model Architecture
 
-1. **Confusion Matrix:**  
-   Visualized correct and incorrect classifications per class.
+```
+INPUT: (28, 28, 1) grayscale image
+        │
+        ▼
+┌─────────────────────────┐
+│  Conv2D — 32 filters    │  → Detects low-level patterns (edges, lines)
+│  Kernel: 3×3 | ReLU     │
+└────────────┬────────────┘
+             │
+             ▼
+┌─────────────────────────┐
+│  MaxPooling2D — 2×2     │  → Reduces size, keeps strongest features
+└────────────┬────────────┘
+             │
+             ▼
+┌─────────────────────────┐
+│  Conv2D — 64 filters    │  → Detects high-level patterns (shapes, textures)
+│  Kernel: 3×3 | ReLU     │
+└────────────┬────────────┘
+             │
+             ▼
+┌─────────────────────────┐
+│  MaxPooling2D — 2×2     │
+└────────────┬────────────┘
+             │
+             ▼
+┌─────────────────────────┐
+│  Dropout (0.3)          │  → Randomly disables 30% of neurons → prevents overfitting
+└────────────┬────────────┘
+             │
+             ▼
+┌─────────────────────────┐
+│  Flatten                │  → 2D feature map → 1D vector
+└────────────┬────────────┘
+             │
+             ▼
+┌─────────────────────────┐
+│  Dense — 32 neurons     │  → Combines all learned features
+│  ReLU                   │
+└────────────┬────────────┘
+             │
+             ▼
+┌─────────────────────────┐
+│  Dense — 10 neurons     │  → One output per class
+│  Softmax                │  → Converts to probabilities
+└─────────────────────────┘
 
-2. **Classification Report:**  
-   Measured *precision*, *recall*, and *F1-score* for each of the 10 classes.
-
-3. **Visualization:**  
-   Displayed sample predictions — showing predicted vs actual labels.
-
-**Key Observations:**
-- Easy to classify: *Trouser, Sandal, Bag, Sneaker*  
-- Harder to classify: *Shirt* (often confused with *T-shirt* or *Pullover*)  
-- Dropout helped generalization by preventing overfitting.
-
----
-
-## 📊 Results & Visualizations
-
-Below are key visualizations that represent how our CNN model learned and performed.
-
----
-
-### 🖼️ Sample Fashion Images
-The dataset contains grayscale images representing 10 fashion categories.  
-This grid shows random samples from the dataset.
-
-![Sample Fashion Images](images/sample_grid.png)
-
----
-
-### 📦 Class Distribution
-Each bar shows how many samples exist for each fashion class.  
-All bars are equal — meaning our data is perfectly balanced, giving the model fair training.
-
-![Class Distribution](images/class_distribution.png)
-
----
-
-### 📈 Training vs Validation Accuracy
-As training goes on, the blue line (training accuracy) rises steadily.  
-The orange line (validation accuracy) follows — showing that the model isn’t just memorizing, but truly learning.
-
-![Training vs Validation Accuracy](images/accuracy_curve.png)
-
----
-
-### 📉 Training vs Validation Loss
-Here we track how much the model’s “mistake level” decreases.  
-Both curves drop, meaning it’s learning efficiently, though validation loss stays slightly higher (normal for unseen data).
-
-![Training vs Validation Loss](images/loss_curve.png)
+Loss: Categorical Crossentropy  |  Optimizer: Adam  |  Metric: Accuracy
+```
 
 ---
 
-### 🔍 Confusion Matrix
-This heatmap shows how well each class was predicted.  
-Bright diagonal boxes = correct predictions!  
-The lighter the box, the more confident our model was.
+## ◈ Training Configuration
 
-![Confusion Matrix](images/confusion_matrix.png)
-
----
-
-Think of the computer as a little kid learning fashion 👧:
-
-- First, it looks at thousands of pictures of clothes 👗👟🧥  
-- It slowly starts recognizing patterns — “Oh! Shoes have soles, shirts have sleeves!”  
-- The accuracy chart shows the kid getting better after each practice.  
-- The loss chart shows fewer mistakes over time (fewer “oops” moments 😅).  
-- Finally, the confusion matrix is like a report card showing what the kid got right and what still confuses them (like mixing up shirts and pullovers).
-
-At the end, the kid becomes a mini **fashion expert**, correctly naming 9 out of 10 items! 🎓
+| Parameter | Value |
+|---|---|
+| Epochs | 50 |
+| Batch Size | 512 |
+| Validation Split | 20% |
+| Framework | TensorFlow / Keras |
+| Regularization | Dropout (rate = 0.3) |
 
 ---
 
-## 🧰 Dropout: Why and How It Helps
+## ◈ Results
 
-**Dropout** randomly deactivates a percentage of neurons during training.  
-This helps the model learn independent patterns and avoid memorizing the training data.
+<div align="center">
 
-In this project:  
-- Dropout (rate = 0.3) slightly reduced training accuracy but **improved test accuracy** — showing better generalization.
+| Configuration | Train Accuracy | Test Accuracy |
+|:---:|:---:|:---:|
+| 32 filters, no dropout | 95.0% | 91.1% |
+| 64 filters, no dropout | 96.0% | 91.6% |
+| 64 filters + dropout | 94.0% | **91.9% ✅** |
 
----
+</div>
 
-## 🛠 Tools and Technologies
-
-| Tool / Library | Purpose |
-|-----------------|----------|
-| **Python 3.x** | Programming language |
-| **TensorFlow / Keras** | Deep learning framework |
-| **NumPy, Pandas** | Data manipulation |
-| **Matplotlib, Seaborn** | Data visualization |
-| **Scikit-learn** | Evaluation metrics (confusion matrix, classification report) |
+> **Best model:** 64 filters + Dropout — slightly lower training accuracy but strongest generalisation on unseen data. Dropout was the key.
 
 ---
 
-## 🚀 Future Enhancements
+## ◈ What the Model Gets Right (and Wrong)
 
-1. **Use the DeepFashion dataset** with 800K high-quality color images.  
-2. **Apply Transfer Learning** using pre-trained CNNs (ResNet, VGG16, MobileNet).  
-3. **Deploy the Model** using Streamlit or Gradio as a web app.  
-4. **Add Color and Texture Analysis** by expanding from grayscale to RGB channels.  
-5. **Explainable AI (Grad-CAM)** to visualize which image regions influenced predictions.
+```
+EASY TO CLASSIFY ✅              HARDER TO CLASSIFY ⚠️
+──────────────────               ──────────────────────
+  Trouser   → Very distinct       Shirt   → Confused with T-shirt
+  Sandal    → Unique shape        Shirt   → Confused with Pullover
+  Bag       → Clear silhouette    Coat    → Similar to Pullover
+  Sneaker   → Strong features
+  Ankle Boot
+```
 
----
-
-## 📊 Results Summary
-
-| Stage | Achievement |
-|--------|--------------|
-| **Data Preprocessing** | Normalized and reshaped 70K grayscale images |
-| **Model Building** | Constructed CNN with convolution, pooling, and dense layers |
-| **Training** | Achieved 95% training accuracy |
-| **Evaluation** | Achieved 91.9% test accuracy with dropout |
-| **Outcome** | Successfully classified 10 fashion categories |
+The confusion between Shirt, T-shirt, and Pullover makes intuitive sense —
+humans sometimes struggle with the same distinction in grayscale photos.
 
 ---
 
-## 🧠 What I Learned
+## ◈ Visualisations
 
-- The significance of **spatial relationships** in image data.  
-- How **CNNs** automatically extract hierarchical features.  
-- How to balance training and validation accuracy using regularization.  
-- Implementation of **Keras layers** like Conv2D, MaxPooling, and Dropout.  
-- How to evaluate models using **confusion matrices** and **F1-scores**.
+| Visual | What It Shows |
+|---|---|
+| `sample_grid.png` | Random sample images from each of the 10 classes |
+| `class_distribution.png` | Bar chart — perfectly balanced dataset (7,000 per class) |
+| `accuracy_curve.png` | Training vs validation accuracy across 50 epochs |
+| `loss_curve.png` | Training vs validation loss — model is learning, not memorising |
+| `confusion_matrix.png` | Heatmap — bright diagonal = correct, off-diagonal = mistakes |
 
----
-
-## 📂 Files Included
-
-| File | Description |
-|------|-------------|
-| `Fashion_Class_Classification.ipynb` | Full project notebook |
-| `fashion-mnist_train.csv` | Training dataset |
-| `fashion-mnist_test.csv` | Testing dataset |
+> 📁 All images stored in `/images` folder
 
 ---
 
-## 👩‍💻 Author
+## ◈ Dropout — The Regularisation Trick
 
-**Developed by:** *Pournima Kamble*  
-🎓 Master’s in Computer Science | Passionate about AI, Machine Learning, and Computer Vision  
-📍 Cleveland, Ohio  
+Without Dropout, the model memorises training images instead of learning patterns.
+With Dropout (rate = 0.3), 30% of neurons are randomly switched off each batch.
 
+```
+Without Dropout:   Train 96% → Test 91.6%   (gap = 4.4%)
+With Dropout:      Train 94% → Test 91.9%   (gap = 2.1%)
+```
 
+Smaller gap = better generalisation = model works on real-world unseen images.
+
+---
+
+## ◈ Future Enhancements
+
+- [ ] Replace Fashion-MNIST with **DeepFashion** (800K real-world color images)
+- [ ] Apply **Transfer Learning** — ResNet50, VGG16, MobileNetV2
+- [ ] Deploy as a **Streamlit or Gradio web app**
+- [ ] Add **Grad-CAM** visualisation — show which pixels influenced each prediction
+- [ ] Extend to **RGB channels** for color-aware classification
+
+---
+
+## ◈ Skills Demonstrated
+
+```txt
+✅  CNN architecture design from scratch (Conv → Pool → Dense → Softmax)
+✅  Image preprocessing — normalisation, reshaping, train/val split
+✅  Dropout regularisation to improve generalisation
+✅  Model evaluation — confusion matrix, F1-score, precision, recall
+✅  Visualisation of training curves to diagnose overfitting
+✅  Iterative model improvement — 3 configurations tested and compared
+✅  Real-world business framing of a computer vision problem
+```
+
+---
+
+## ◈ How to Run
+
+```bash
+# Clone the repository
+git clone https://github.com/pournima2413/fashion-class-classification
+cd fashion-class-classification
+
+# Install dependencies
+pip install tensorflow numpy pandas matplotlib seaborn scikit-learn jupyter
+
+# Download dataset from Kaggle and place in /data folder
+# https://www.kaggle.com/datasets/zalando-research/fashionmnist
+
+# Launch the notebook
+jupyter notebook Fashion_Class_Classification.ipynb
+```
+
+---
+
+## ◈ Project Structure
+
+```
+fashion-class-classification/
+│
+├── Fashion_Class_Classification.ipynb   ← Full analysis and model notebook
+│
+├── data/
+│   ├── fashion-mnist_train.csv          ← Training set (download from Kaggle)
+│   └── fashion-mnist_test.csv           ← Test set (download from Kaggle)
+│
+├── images/
+│   ├── sample_grid.png
+│   ├── class_distribution.png
+│   ├── accuracy_curve.png
+│   ├── loss_curve.png
+│   └── confusion_matrix.png
+│
+└── README.md
+```
+
+---
+
+<div align="center">
+
+**Pournima Kamble** — MS Computer Science @ Cleveland State University (2026)
+Seeking Data Analyst & Data Engineer roles · Available June 2026
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/pournimakamble)
+[![GitHub](https://img.shields.io/badge/GitHub-pournima2413-333?style=flat-square&logo=github&logoColor=white)](https://github.com/pournima2413)
+[![Email](https://img.shields.io/badge/Email-pournima2413@gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:pournima2413@gmail.com)
+
+</div>
